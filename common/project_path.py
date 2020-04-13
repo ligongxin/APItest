@@ -1,0 +1,17 @@
+#_*_encoding=utf-8_*_
+#作者     :bozhong
+#创建时间 :2020/4/1014:47
+#文件     :
+#IDE      :PyCharm
+
+import os
+
+p_path=os.path.realpath(__file__)
+Project_path=os.path.split(os.path.split(os.path.realpath(__file__))[0])[0]
+p=os.path.split(os.getcwd())[0]
+
+#测试用例路径
+test_case_path=os.path.join(Project_path,'test_data','api.xlsx')
+
+#数据库配置路径
+db_config_path=os.path.join(Project_path,'config','db_config')
