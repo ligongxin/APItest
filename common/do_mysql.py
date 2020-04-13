@@ -5,7 +5,7 @@
 #IDE      :PyCharm
 import mysql.connector
 from common import project_path
-config={'host':'192.168.80.24',
+config={'host':'192.168.xx.xx',
         'user':'root',
         'password':'123456',
         'port':3306 ,
@@ -23,7 +23,7 @@ class DoMysql:
         conn.close()
         return res
 
-if __name__=='__main__':
-    sql='SELECT app_uid FROM `user` WHERE email="123456@qq.com"'
-    res=DoMysql().do_mysql(config,sql)
-    print(res[0][0])
+# if __name__=='__main__':
+    # sql='SELECT app_uid FROM `user` WHERE email="123456@qq.com"'
+    # res=DoMysql().do_mysql(config,sql)
+    # print(res[0][0])
