@@ -4,7 +4,7 @@
 #文件     :
 #IDE      :PyCharm
 
-import requests
+import requests,json
 
 OKGREEN = '\033[32m'
 ERROR = '\033[31m'
@@ -46,7 +46,6 @@ class HttpRequtser:
 
 if __name__=='__main__':
     res=HttpRequtser()
-    # data={"type":2,"email":"test@flomeapp.com","code":'1234'}
-    data={"app_uid":327227}
-    r=res.http_request('http://apiflome.office.bzdev.net/restful/user/info.json&__l=zh-cn,',data,'get',cookies=None)
+
+    r=res.http_request(url,data,'post',cookies=None)
     print(r.json())
