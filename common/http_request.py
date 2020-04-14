@@ -46,6 +46,12 @@ class HttpRequtser:
 
 if __name__=='__main__':
     res=HttpRequtser()
-
+    # data={"type":2,"email":"test@flomeapp.com","code":'1234'}
+    # data={'access_token':'2b0629f379ff0de2ef34d7d4260b3ec9'}
+    # headers = {'Content-Type': 'application/json;charset=UTF-8'}
+    # param=json.dumps(data)
+    # url='http://api.office.bzdev.net/wx/mua/restful/user/baby.json?__v=1.6.0&__t=m&__p=mua'
+    url = 'http://acount.office.bzdev.net/restful/register/getmobilecaptcha.json?__v=1.6.0&__t=m&__p=mua&access_token=undefined'
+    data = {'area_code': 86, 'mobile': '13200000000'}
     r=res.http_request(url,data,'post',cookies=None)
     print(r.json())
