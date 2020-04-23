@@ -23,7 +23,7 @@ class DoMysql:
         conn.close()
         return res
 
-if __name__=='__main__':
-    sql='SELECT app_uid FROM `user` WHERE email="123456@qq.com"'
-    res=DoMysql().do_mysql(config,sql)
-    print(res[0][0])
+# if __name__=='__main__':
+    # sql='SELECT app_uid FROM `user` WHERE email="123456@qq.com"'
+    # res=DoMysql().do_mysql(config,sql)
+    # print(res[0][0])
