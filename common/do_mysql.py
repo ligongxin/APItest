@@ -5,7 +5,7 @@
 #IDE      :PyCharm
 import mysql.connector
 from common import project_path
-config={'host':'192.168.80.24',
+config={'host':'192.168.xx.xx',
         'user':'root',
         'password':'123456',
         'port':3306 ,
