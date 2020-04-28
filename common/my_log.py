@@ -59,4 +59,5 @@ class MyLog():
 		
 if __main__ == '__name__':
 	log=MyLog()
-	my_logger.debug("test！")
+	log.debug("test！")
+	log.info('testinfo')
