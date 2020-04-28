@@ -16,6 +16,6 @@ test_case_path=os.path.join(Project_path,'test_data','api.xlsx')
 #数据库配置路径
 db_config_path=os.path.join(Project_path,'config','db_config')
 
-#报告路径的配置
-report_path=os.path.join(Project_path,'')
+#日志报告路径的配置
+log_path=os.path.join(Project_path,'test_result','logs','test_api.txt')
 
