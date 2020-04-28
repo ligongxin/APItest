@@ -56,3 +56,7 @@ class MyLog():
 
     def critical(self, msg):
         self.my_log("CRITICAL", msg)
+		
+if __main__ == '__name__':
+	log=MyLog()
+	my_logger.debug("test！")
