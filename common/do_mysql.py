@@ -13,8 +13,8 @@ config={'host':'192.168.xx.xx',
         }
 
 class DoMysql:
-    def do_mysql(self,config,sql):
-        config=project_path.db_config_path
+    def do_mysql(self,sql):
+        config=eval(ReadConfig().read_config(project_path.db_config_path,'DB','config'))
         conn=mysql.connector.connect(**config)
         cursor=conn.cursor()
         cursor.execute(sql)

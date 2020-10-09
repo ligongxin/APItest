@@ -1,6 +1,6 @@
 [DB]
-config={'host':'192.168.80.24',
-        'user':'root',
+config={'host':'192.168.80.34',
+        'user':'dev',
         'password':'123456',
         'port':3306 ,
         'database':'seedit_flome',#指定你的数据库名
