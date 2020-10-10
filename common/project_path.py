@@ -11,7 +11,7 @@ Project_path=os.path.split(os.path.split(os.path.realpath(__file__))[0])[0]
 p=os.path.split(os.getcwd())[0]
 
 #测试用例路径
-test_case_path=os.path.join(Project_path,'test_data','api.xlsx')
+test_case_path=os.path.join(Project_path,'test_data','mindfulness.xlsx')
 
 #数据库配置路径
 db_config_path=os.path.join(Project_path,'config','db_config')
@@ -19,3 +19,4 @@ db_config_path=os.path.join(Project_path,'config','db_config')
 #报告路径的配置
 report_path=os.path.join(Project_path,'')
 
+#rizhi

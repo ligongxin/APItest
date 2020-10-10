@@ -24,21 +24,21 @@ class HttpRequtser:
         elif http_method.upper()=='PUT':
             try:
                 res=requests.put(url,param,cookies=cookies)
-                print('正在进行post请求 ')
+                print('正在进行PUT请求 ')
             except Exception as e:
-                print("post请求出现了异常:{0}".format(e))
+                print("PUT请求出现了异常:{0}".format(e))
         elif http_method.upper()=='DELETE':
             try:
                 res = requests.delete(url,param,cookies=cookies)
-                print('正在进行post请求 ')
+                print('正在进行DELETE请求 ')
             except Exception as e:
-                print("post请求出现了异常:{0}".format(e))
+                print("DELETE请求出现了异常:{0}".format(e))
         else:
             try:
                 res=requests.get(url,param,cookies=cookies)
-                print(OKGREEN+'正在进行post请求 ')
+                print(OKGREEN+'正在进行get请求 ')
             except Exception as e:
-                print("post请求出现了异常:{0}".format(e))
+                print("get请求出现了异常:{0}".format(e))
 
         # access_token=res['data']['access_token']
         # print("http请求的结果是:{0}".format(access_token))
@@ -51,7 +51,11 @@ if __name__=='__main__':
     # headers = {'Content-Type': 'application/json;charset=UTF-8'}
     # param=json.dumps(data)
     # url='http://api.office.bzdev.net/wx/mua/restful/user/baby.json?__v=1.6.0&__t=m&__p=mua'
-    url = 'http://acount.office.bzdev.net/restful/register/getmobilecaptcha.json?__v=1.6.0&__t=m&__p=mua&access_token=undefined'
-    data = {'area_code': 86, 'mobile': '13200000000'}
-    r=res.http_request(url,data,'post',cookies=None)
+    # url = 'http://acount.office.bzdev.net/restful/register/getmobilecaptcha.json?__v=1.6.0&__t=m&__p=mua&access_token=undefined'
+    # data = {'area_code': 86, 'mobile': '13200000000'}
+    # r=res.http_request(url,data,'post',cookies=None)
+    # print(r.json())
+    url='http://api.mindfulness.office.bzdev.net/mindfulness/restful/index/musicenjoy.json'
+    r=res.http_request(url,None,'get',cookies=None)
     print(r.json())
+    print(r.status_code)

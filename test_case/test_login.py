@@ -10,7 +10,7 @@ from common import project_path
 import unittest
 from ddt import ddt,data
 
-test_data=DoExce(project_path.test_case_path).get_excel('register')
+test_data=DoExce(project_path.test_case_path).get_excel('mindfulness')
 
 COOKIES=None
 @ddt
@@ -28,10 +28,15 @@ class TestLogin(unittest.TestCase):
             COOKIES = res.cookies  # 如果cookies不为空 就替换全局变量的COOKIES 修改全局变量
         try:
             self.assertEqual(str(data_item['ExpectedResult']),str(res.json()['error_code']))
+            self.assertEqual(res.status_code,200)
             print('用例通过')
+            TestResult='PASS'
         except AssertionError as e:
             print('用例失败错误是{}'.format(e))
+            TestResult = 'Failed'
             raise e
+        finally:
+            DoExce(project_path.test_case_path).write_back('mindfulness',data_item['id']+1,res.json()['error_code'],TestResult)
 
 
     def tearDown(self):
