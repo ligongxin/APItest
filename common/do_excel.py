@@ -27,17 +27,21 @@ class DoExce():
             test_data.append(sub_data)
         return test_data
 
-    def write_back(self,sheet_name,row,ActualResult,TestResult):
+    def write_back(self,sheet_name,row,ActualResult,TestResult,Comment):
         wb=load_workbook(self.file_name)
         sheet=wb[sheet_name]
         sheet.cell(row,8).value=ActualResult
         sheet.cell(row, 9).value = TestResult
+        sheet.cell(row, 10).value = Comment
 
         #保存
         wb.save(self.file_name)
 
 if __name__=='__main__':
-
-    sheet_name='mindfulness'
+    import json
+    sheet_name='login'
     wb=DoExce(project_path.test_case_path).get_excel(sheet_name)
-    print(wb)
+    data=(wb[0]['param'])
+    print(type(data))
+    b=eval(data)
+    print(type(b))

@@ -10,32 +10,34 @@ OKGREEN = '\033[32m'
 ERROR = '\033[31m'
 WARNING = '\033[33m'
 END = '\033[0m'
-
+header={'User-Agent':'bz-mindfulness-android-1.5.1 from android sdk version:24 mobile versionCode:7.0 phone model:PRO 7-H BZChannelNo-baidu',
+        'Content-Type':'application/x-www-form-urlencoded'}
 
 class HttpRequtser:
-    cookies = None
-    def http_request(self,url,param,http_method,cookies):
+
+    def http_request(self,url,param,http_method,**kwargs):
+
         if http_method.upper()=='POST':
             try:
-                res=requests.post(url,param,cookies=cookies)
+                res=requests.post(url,param,**kwargs)
                 print(OKGREEN+'正在进行post请求 ')
             except Exception as e:
                 print("post请求出现了异常:{0}".format(e))
         elif http_method.upper()=='PUT':
             try:
-                res=requests.put(url,param,cookies=cookies)
+                res=requests.put(url,param,**kwargs)
                 print('正在进行PUT请求 ')
             except Exception as e:
                 print("PUT请求出现了异常:{0}".format(e))
         elif http_method.upper()=='DELETE':
             try:
-                res = requests.delete(url,param,cookies=cookies)
+                res = requests.delete(url,param,**kwargs)
                 print('正在进行DELETE请求 ')
             except Exception as e:
                 print("DELETE请求出现了异常:{0}".format(e))
         else:
             try:
-                res=requests.get(url,param,cookies=cookies)
+                res=requests.get(url,param,**kwargs)
                 print(OKGREEN+'正在进行get请求 ')
             except Exception as e:
                 print("get请求出现了异常:{0}".format(e))
@@ -45,17 +47,30 @@ class HttpRequtser:
         return res
 
 if __name__=='__main__':
-    res=HttpRequtser()
-    # data={"type":2,"email":"test@flomeapp.com","code":'1234'}
-    # data={'access_token':'2b0629f379ff0de2ef34d7d4260b3ec9'}
-    # headers = {'Content-Type': 'application/json;charset=UTF-8'}
-    # param=json.dumps(data)
-    # url='http://api.office.bzdev.net/wx/mua/restful/user/baby.json?__v=1.6.0&__t=m&__p=mua'
-    # url = 'http://acount.office.bzdev.net/restful/register/getmobilecaptcha.json?__v=1.6.0&__t=m&__p=mua&access_token=undefined'
-    # data = {'area_code': 86, 'mobile': '13200000000'}
-    # r=res.http_request(url,data,'post',cookies=None)
-    # print(r.json())
-    url='http://api.mindfulness.office.bzdev.net/mindfulness/restful/index/musicenjoy.json'
-    r=res.http_request(url,None,'get',cookies=None)
+    re1=HttpRequtser()
+    import time
+    url='https://account.office.bzdev.net/restful/register/getappmobilecaptcha.json'
+    data={'captcha_type':'member_register','captcha_count':1,'phone_prefix':86,'mobile':13200000004}
+    r=re1.http_request(url,data,'post',verify=False,headers=header)
+    # r = requests.post(url, data, 'post', verify=False,headers=header)
     print(r.json())
-    print(r.status_code)
+    code=r.json()['data']['idstring']
+
+    time.sleep(1)
+    url = 'https://account.office.bzdev.net/restful/app/codelogin.json'
+    data = {'is_debug': 0, 'mobilecaptcha':code, 'phone_prefix': 86, 'phone': 13200000004,'type':1}
+
+    lo=re1.http_request(url,data,'post',verify=False,headers=header)
+    print(lo.json())
+    token=None
+    if lo.json()['data']['access_token']:
+        # header['access_token']=tokin
+        token = lo.json()['data']['access_token']
+        print(111)
+    print(header)
+    time.sleep(1)
+
+    url = 'https://api.office.bzdev.net/mindfulness/restful/member/profile.json'
+    data={'access_token':token}
+    pro=re1.http_request(url,data,'get',headers=header,verify=False)
+    print(pro.json())

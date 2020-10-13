@@ -19,4 +19,5 @@ db_config_path=os.path.join(Project_path,'config','db_config')
 #报告路径的配置
 report_path=os.path.join(Project_path,'')
 
-#rizhi
+#日志
+logs_path=os.path.join(Project_path,'report','log','testApi_log.txt')
