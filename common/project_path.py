@@ -21,3 +21,7 @@ log_path=os.path.join(Project_path,'test_result','logs','test_api.txt')
 
 #日志
 logs_path=os.path.join(Project_path,'report','log','testApi_log.txt')
+
+#html报告
+report_path=os.path.join(Project_path,'report','html_report','report.html')
+
