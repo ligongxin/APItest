@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>接口测试</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 120%; }
+table       { font-size: 100%; }
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<script language="javascript" type="text/javascript">
+output_list = Array();
+/*level 调整增加只显示通过用例的分类 --Findyou
+0:Summary //all hiddenRow
+1:Failed  //pt hiddenRow, ft none
+2:Pass    //pt none, ft hiddenRow
+3:All     //pt none, ft none
+*/
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 2 || level == 0 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level < 2) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+	//console.log(detail_class.length)
+	if (level == 3) {
+		for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="收起"
+		}
+	}
+	else{
+			for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="详细"
+		}
+	}
+}
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        //ID修改 点 为 下划线 -Findyou
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+</script>
+<div class='heading'>
+<h1 style="font-family: Microsoft YaHei">接口测试</h1>
+<p class='attribute'><strong>测试人员 : </strong> lgx</p>
+<p class='attribute'><strong>开始时间 : </strong> 2020-10-14 13:47:02</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:03.442196</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 13，通过 13，通过率= 100.00%</p>
+
+<p class='description'>11111</p>
+</div>
+
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 100.00% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 0 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 13 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 13 }</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 16px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>test_cases.test_api.TestApi</td>
+    <td class="text-center">10</td>
+    <td class="text-center">10</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c1',10)" class="detail" id='c1'>详细</a></td>
+</tr>
+
+<tr id='pt1_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_01</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse in" align="left">
+    <pre>
+    
+pt1_1: 2020-10-14 13:47:02,051-INFO-my_log.py-mindfulness-日志信息:开始测试
+开始测试
+正在进行第1条用例:数据正常显示
+2020-10-14 13:47:02,052-INFO-my_log.py-mindfulness-日志信息:正在进行第1条用例:数据正常显示
+测试数据为None
+2020-10-14 13:47:02,052-INFO-my_log.py-mindfulness-日志信息:测试数据为None
+[32m正在进行get请求 
+测试结果是{'error_code': 0, 'data': {'music_enjoy': [{'id': 11, 'music_name': '火声', 'audio_url': 'http://astatic.bozhong.com/mindfulness/2020/06/19/b7a114de4809638e56c40fe17e02d6e7329897.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/c5904ef7e2b61927741ce3226f88d906695945.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/8dc62af82700404dfad5f9ae2d7d6e65439207.jpg', 'duration': 32}, {'id': 12, 'music_name': '海浪声', 'audio_url': 'http://astatic.bozhong.com/mindfulness/2020/06/19/94a5eb2dd4e5859d97c4bcf643f9f086429629.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/06/11/d77abde66fedf773834d7ad672291b87385302.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/06/11/169b27d35f6bcc539c3cc6f69bd99c86362905.gif', 'duration': 28}, {'id': 16, 'music_name': '鸟叫', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/07/28/ab2017832f226ba3bdf92c845b536de4445295.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/07/28/7226a15188afe05830bc7bfee2b51f3c540713.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/07/28/35402f447e89df6f096a6276e5417fc4642097.jpg', 'duration': 17}, {'id': 23, 'music_name': '涓涓流水', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/07/28/68e14f69abd189f7b5d23b0c97ecd2e6111225.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/07/28/24b30d636e922b92bdcda322b5535a63539064.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/07/28/fd4157014ec879f20ae648991d6b3386211054.jpg', 'duration': 15}, {'id': 31, 'music_name': '雷声', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/25/8bd7eb9446fadb0763f9a65df39ffc6a317945.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/8be92a8296051b04d78f78607865e5d7669069.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/24e908becaec5f416223581bb6644098761143.jpg', 'duration': 68}, {'id': 32, 'music_name': '沙滩', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/21/93247a8442b747721216d3d2dd8ec453102271.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/259320465a0b63be5328436f881088b9228586.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/271fc68414aec329fda7a5e37dcf9ea1147752.jpg', 'duration': 85}, {'id': 33, 'music_name': '水滴', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/20/44ad4a993f5f5356ba700759b77c3acd112025.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/ffea3983a18aafd6dca428a70fb6739e410101.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/0489c91bf57a4d17a959f36c5634c178375428.jpg', 'duration': 73}, {'id': 38, 'music_name': '八音盒', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/26/111a18fb971187872f33f1a36554533e783564.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/6a0f0cbc565b81d3eed3488c55129fbc280368.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/05b1b56c07b76d6cdcb8ce62025db582595543.jpg', 'duration': 74}, {'id': 39, 'music_name': '火车', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/26/74ed1079750db591bf36fb41a852ac60792549.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/df5ebb4e39ad879ce231f64d1705c137427342.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/e7e59efb3baea7ab7976942b2b8c879f675493.jpg', 'duration': 48}]}}
+2020-10-14 13:47:02,278-INFO-my_log.py-mindfulness-日志信息:测试结果是{'error_code': 0, 'data': {'music_enjoy': [{'id': 11, 'music_name': '火声', 'audio_url': 'http://astatic.bozhong.com/mindfulness/2020/06/19/b7a114de4809638e56c40fe17e02d6e7329897.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/c5904ef7e2b61927741ce3226f88d906695945.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/8dc62af82700404dfad5f9ae2d7d6e65439207.jpg', 'duration': 32}, {'id': 12, 'music_name': '海浪声', 'audio_url': 'http://astatic.bozhong.com/mindfulness/2020/06/19/94a5eb2dd4e5859d97c4bcf643f9f086429629.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/06/11/d77abde66fedf773834d7ad672291b87385302.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/06/11/169b27d35f6bcc539c3cc6f69bd99c86362905.gif', 'duration': 28}, {'id': 16, 'music_name': '鸟叫', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/07/28/ab2017832f226ba3bdf92c845b536de4445295.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/07/28/7226a15188afe05830bc7bfee2b51f3c540713.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/07/28/35402f447e89df6f096a6276e5417fc4642097.jpg', 'duration': 17}, {'id': 23, 'music_name': '涓涓流水', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/07/28/68e14f69abd189f7b5d23b0c97ecd2e6111225.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/07/28/24b30d636e922b92bdcda322b5535a63539064.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/07/28/fd4157014ec879f20ae648991d6b3386211054.jpg', 'duration': 15}, {'id': 31, 'music_name': '雷声', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/25/8bd7eb9446fadb0763f9a65df39ffc6a317945.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/8be92a8296051b04d78f78607865e5d7669069.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/24e908becaec5f416223581bb6644098761143.jpg', 'duration': 68}, {'id': 32, 'music_name': '沙滩', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/21/93247a8442b747721216d3d2dd8ec453102271.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/259320465a0b63be5328436f881088b9228586.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/271fc68414aec329fda7a5e37dcf9ea1147752.jpg', 'duration': 85}, {'id': 33, 'music_name': '水滴', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/20/44ad4a993f5f5356ba700759b77c3acd112025.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/ffea3983a18aafd6dca428a70fb6739e410101.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/0489c91bf57a4d17a959f36c5634c178375428.jpg', 'duration': 73}, {'id': 38, 'music_name': '八音盒', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/26/111a18fb971187872f33f1a36554533e783564.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/6a0f0cbc565b81d3eed3488c55129fbc280368.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/05b1b56c07b76d6cdcb8ce62025db582595543.jpg', 'duration': 74}, {'id': 39, 'music_name': '火车', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/26/74ed1079750db591bf36fb41a852ac60792549.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/df5ebb4e39ad879ce231f64d1705c137427342.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/e7e59efb3baea7ab7976942b2b8c879f675493.jpg', 'duration': 48}]}}
+用例通过
+2020-10-14 13:47:02,279-INFO-my_log.py-mindfulness-日志信息:用例通过
+用例结束
+2020-10-14 13:47:02,336-INFO-my_log.py-mindfulness-日志信息:用例结束
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_02</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
+    <div id='div_pt1_2' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_2' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
+    <div id='div_pt1_2' class="collapse in" align="left">
+    <pre>
+    
+pt1_2: 2020-10-14 13:47:02,337-INFO-my_log.py-mindfulness-日志信息:开始测试
+开始测试
+正在进行第2条用例:数据正常显示
+2020-10-14 13:47:02,337-INFO-my_log.py-mindfulness-日志信息:正在进行第2条用例:数据正常显示
+测试数据为None
+2020-10-14 13:47:02,338-INFO-my_log.py-mindfulness-日志信息:测试数据为None
+[32m正在进行get请求 
+测试结果是{'error_code': 0, 'data': {'background_music': [{'id': 11, 'music_name': '火声', 'audio_url': 'http://astatic.bozhong.com/mindfulness/2020/06/19/b7a114de4809638e56c40fe17e02d6e7329897.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/c5904ef7e2b61927741ce3226f88d906695945.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/8dc62af82700404dfad5f9ae2d7d6e65439207.jpg', 'duration': 32}, {'id': 16, 'music_name': '鸟叫', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/07/28/ab2017832f226ba3bdf92c845b536de4445295.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/07/28/7226a15188afe05830bc7bfee2b51f3c540713.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/07/28/35402f447e89df6f096a6276e5417fc4642097.jpg', 'duration': 17}, {'id': 26, 'music_name': '水渠', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/25/df8f24d82dec6edbacb883441c884d6a867780.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/a074095c4a3c86e7c1b757648bd0853d199045.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/e0b6313113fa9054f2b41ddf989cdd5f296605.jpg', 'duration': 76}, {'id': 27, 'music_name': '飞机', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/25/e6109bad1532c1e8f40b13d332f78ee2526319.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/57655456b330298186c36bca126e78ce354381.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/1bcaef04ffd485de75dcf39f205af76e137241.jpg', 'duration': 115}, {'id': 28, 'music_name': '蛐蛐', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/25/ab419ddb1ef50ad877ba144611e4f3b6162302.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/e3d6dc23a473c82cb7669b927a6ca0b4169870.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/b4c286708c2f984174356b5e7f8b389d214896.jpg', 'duration': 102}, {'id': 31, 'music_name': '雷声', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/25/8bd7eb9446fadb0763f9a65df39ffc6a317945.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/8be92a8296051b04d78f78607865e5d7669069.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/24e908becaec5f416223581bb6644098761143.jpg', 'duration': 68}, {'id': 32, 'music_name': '沙滩', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/21/93247a8442b747721216d3d2dd8ec453102271.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/259320465a0b63be5328436f881088b9228586.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/271fc68414aec329fda7a5e37dcf9ea1147752.jpg', 'duration': 85}, {'id': 33, 'music_name': '水滴', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/20/44ad4a993f5f5356ba700759b77c3acd112025.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/ffea3983a18aafd6dca428a70fb6739e410101.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/0489c91bf57a4d17a959f36c5634c178375428.jpg', 'duration': 73}, {'id': 34, 'music_name': '海鸥', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/19/9bf528556e776cdcaf8a7694ff2ef55e495051.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/82ef447b7df1b558fd58779941867af9225419.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/2498599b54e0ad5e4aa00da8895a0be3744261.jpg', 'duration': 123}, {'id': 35, 'music_name': '蛙声', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/21/aef0c4d42077448e3a3c63215da79276591556.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/76ba8c812c0aab5bb5a0f70ec6ee3e94357042.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/218482d8764abcdb6ca6bf1b0759b557363323.jpg', 'duration': 80}, {'id': 36, 'music_name': '蝉鸣', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/25/f9e734c932dd94a114bd1b75915bc01e845795.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/e7c4572fe1cf8c60ede8e0a885fc48bf997785.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/c84d21eee3695e2613521d7757913ee9183736.jpg', 'duration': 40}, {'id': 37, 'music_name': '风声', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/25/5c1c0e97cc10af7a6b63ec1d988eb9fc297640.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/20/09056958588183b9ebb5c51e03c67c25391078.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/20/5fccdba68f493aeaab29872553aeafcf479199.jpg', 'duration': 43}, {'id': 38, 'music_name': '八音盒', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/26/111a18fb971187872f33f1a36554533e783564.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/6a0f0cbc565b81d3eed3488c55129fbc280368.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/05b1b56c07b76d6cdcb8ce62025db582595543.jpg', 'duration': 74}, {'id': 39, 'music_name': '火车', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/26/74ed1079750db591bf36fb41a852ac60792549.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/df5ebb4e39ad879ce231f64d1705c137427342.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/e7e59efb3baea7ab7976942b2b8c879f675493.jpg', 'duration': 48}], 'guide_language': [{'id': 1, 'guide_name': '洗脑神曲-啦啦啦阿拉啦啦啦啦啦啦啦啦啦啦啦啦', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/09/bf8d32023d98bc26bb8cecd93edf6b90240936.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/05/423593f873736c1aef83a1fa09cbcc82976916.jpg', 'duration': 758, 'describe': '测试内容放厕所翁多多多多多多多多多多多多多多'}, {'id': 2, 'guide_name': '引导语2', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/09/fda4e75950f4d597298f80bc69e70c40326593.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/09/54b9fda3773537295b5f631badd6440d742476.jpg', 'duration': 315, 'describe': '放电饭锅'}, {'id': 3, 'guide_name': '正念冥想', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/11/d814be57dae3c8617e389661a2660c0c865393.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/09/dec9c99554892c3fa57dfe93834fe8a3786947.jpg', 'duration': 315, 'describe': '截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n\r\n\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n\r\n\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n'}, {'id': 4, 'guide_name': '三生三世', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/09/c8dbcc7a2b6fccd8a5fc2297472a1a4c325647.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/09/987ee6589b0a54ac66207a9004ec0145124677.jpg', 'duration': 342, 'describe': '引导语内容引导语5引导语5引导语5引导语5引导语5引导语5引导语5引导语5'}, {'id': 5, 'guide_name': '测试23', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/09/a69353da2e6b73ee3eb4ec172a578223733237.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/05/423593f873736c1aef83a1fa09cbcc82976916.jpg', 'duration': 758, 'describe': '测试内容'}, {'id': 6, 'guide_name': '洗脑神曲-啦啦啦阿拉啦啦啦啦啦啦啦啦啦啦啦啦是擦擦擦擦擦擦擦擦擦擦擦擦擦擦擦擦擦擦擦擦撒啊啊啊啊啊啊', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/10/07fb6e3fc8b63c9dc7791418597aa6c8985254.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/a027fd6c151b06efe596f1a34770303b783817.jpg', 'duration': 315, 'describe': '洒出错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错\r\nacascassacascacascsacas\r\nascccccccccccccccascccccccccccccccccascascascascascascascascascascascascascascascascascascascascascascascascascasca撒擦啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊撒擦啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\r\n\r\n\r\n\r\ncs\r\n\r\ncascacascascasascascascasscsaccscascascascascascascascascascascascascascascascascasacscscscscscscscscs1'}, {'id': 7, 'guide_name': '撒擦擦错错错错错错错错错错错错错', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/10/5cc58b49fe4b3b23596357849c69353c898844.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/d5760449b5d8958fa515b01e91bb5c57562077.jpg', 'duration': 758, 'describe': '阿萨擦错错错错错错错错错错错错错错错错错错\r\ncasc\r\nascasasccsacas\r\ncacascs\r\n\r\nc阿萨擦是'}, {'id': 8, 'guide_name': '自在正念', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/10/6143f6082467a27f44c2724d19e1cbf1757120.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/dac95b027f54c8b3b8a6e176d025d0bf120176.jpg', 'duration': 315, 'describe': '擦洒洒水所所所所所所所所所所所所所所所所所所所'}, {'id': 11, 'guide_name': '土豆', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/09/23/96e9daa2223980e42ac6b4dd9b5cbfad133410.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/578ed0a0918bb828a14f3e3f00178853794419.jpg', 'duration': 634, 'describe': '阿萨擦错错错错错错错错错错错错错错'}, {'id': 12, 'guide_name': '身体扫描', 'audio_url': 'http://astatic.bozhong.com/mindfulness/2020/09/23/adeba031d894e90ca379fbd3314d3412574160.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/09/27/a9381132f8f5b77ff7c0b50f5070b98a753812.gif', 'duration': 634, 'describe': '阿萨擦错错错错错错错错错错错错错错错错错错错错错'}], 'warning_tone': [{'warning_tone_id': 1, 'name': '鸟叫', 'audio': 'http://astatic.office.bzdev.net/mindfulness/2020/07/28/ab2017832f226ba3bdf92c845b536de4445295.mp3', 'pic': 'https://image.office.bzdev.net/mindfulness/2020/07/28/35402f447e89df6f096a6276e5417fc4642097.jpg'}, {'warning_tone_id': 2, 'name': '火声1111', 'audio': 'http://astatic.bozhong.com/mindfulness/2020/06/19/b7a114de4809638e56c40fe17e02d6e7329897.mp3', 'pic': 'https://image.office.bzdev.net/mindfulness/2020/06/11/169b27d35f6bcc539c3cc6f69bd99c86362905.gif'}, {'warning_tone_id': 3, 'name': 'GONG HANCHI', 'audio': 'http://astatic.office.bzdev.net/mindfulness/2020/09/22/7e1ecfbffe7ae9625a7e0758da1de70c941193.mp3', 'pic': 'https://image.office.bzdev.net/mindfulness/2020/09/22/733147fbf02eef39362ba522a9c254ac254565.gif'}, {'warning_tone_id': 4, 'name': 'DENGZE', 'audio': 'http://astatic.office.bzdev.net/mindfulness/2020/09/25/e8595ff5794283b9153f2fecc579b639906941.mp3', 'pic': 'https://image.office.bzdev.net/mindfulness/2020/09/25/6d6a6cf0bfe998551f5318eff3bc2b7b142486.jpg'}, {'warning_tone_id': 5, 'name': '和SaaS江苏科技擦查看就A出口叫啊是', 'audio': 'http://astatic.office.bzdev.net/mindfulness/2020/06/11/d814be57dae3c8617e389661a2660c0c865393.mp3', 'pic': 'https://image.office.bzdev.net/mindfulness/2020/09/25/5adf760449d9e31518e752a75b5fba34156365.jpg'}, {'warning_tone_id': 6, 'name': 'DENGZEDE', 'audio': 'http://astatic.bozhong.com/mindfulness/2020/06/19/94a5eb2dd4e5859d97c4bcf643f9f086429629.mp3', 'pic': 'https://image.office.bzdev.net/mindfulness/2020/09/27/d1ef5291a7dbbfd60efff7d3c2c326bf258280.gif'}, {'warning_tone_id': 7, 'name': '三生三世', 'audio': 'http://astatic.office.bzdev.net/mindfulness/2020/09/25/e8595ff5794283b9153f2fecc579b639906941.mp3', 'pic': 'https://image.office.bzdev.net/mindfulness/2020/09/27/bf8348f68c65744cc3ca3201a9d10538939475.gif'}]}}
+2020-10-14 13:47:02,482-INFO-my_log.py-mindfulness-日志信息:测试结果是{'error_code': 0, 'data': {'background_music': [{'id': 11, 'music_name': '火声', 'audio_url': 'http://astatic.bozhong.com/mindfulness/2020/06/19/b7a114de4809638e56c40fe17e02d6e7329897.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/c5904ef7e2b61927741ce3226f88d906695945.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/8dc62af82700404dfad5f9ae2d7d6e65439207.jpg', 'duration': 32}, {'id': 16, 'music_name': '鸟叫', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/07/28/ab2017832f226ba3bdf92c845b536de4445295.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/07/28/7226a15188afe05830bc7bfee2b51f3c540713.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/07/28/35402f447e89df6f096a6276e5417fc4642097.jpg', 'duration': 17}, {'id': 26, 'music_name': '水渠', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/25/df8f24d82dec6edbacb883441c884d6a867780.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/a074095c4a3c86e7c1b757648bd0853d199045.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/e0b6313113fa9054f2b41ddf989cdd5f296605.jpg', 'duration': 76}, {'id': 27, 'music_name': '飞机', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/25/e6109bad1532c1e8f40b13d332f78ee2526319.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/57655456b330298186c36bca126e78ce354381.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/1bcaef04ffd485de75dcf39f205af76e137241.jpg', 'duration': 115}, {'id': 28, 'music_name': '蛐蛐', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/25/ab419ddb1ef50ad877ba144611e4f3b6162302.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/e3d6dc23a473c82cb7669b927a6ca0b4169870.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/b4c286708c2f984174356b5e7f8b389d214896.jpg', 'duration': 102}, {'id': 31, 'music_name': '雷声', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/25/8bd7eb9446fadb0763f9a65df39ffc6a317945.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/8be92a8296051b04d78f78607865e5d7669069.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/24e908becaec5f416223581bb6644098761143.jpg', 'duration': 68}, {'id': 32, 'music_name': '沙滩', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/21/93247a8442b747721216d3d2dd8ec453102271.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/259320465a0b63be5328436f881088b9228586.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/271fc68414aec329fda7a5e37dcf9ea1147752.jpg', 'duration': 85}, {'id': 33, 'music_name': '水滴', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/20/44ad4a993f5f5356ba700759b77c3acd112025.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/ffea3983a18aafd6dca428a70fb6739e410101.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/0489c91bf57a4d17a959f36c5634c178375428.jpg', 'duration': 73}, {'id': 34, 'music_name': '海鸥', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/19/9bf528556e776cdcaf8a7694ff2ef55e495051.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/82ef447b7df1b558fd58779941867af9225419.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/2498599b54e0ad5e4aa00da8895a0be3744261.jpg', 'duration': 123}, {'id': 35, 'music_name': '蛙声', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/21/aef0c4d42077448e3a3c63215da79276591556.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/76ba8c812c0aab5bb5a0f70ec6ee3e94357042.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/218482d8764abcdb6ca6bf1b0759b557363323.jpg', 'duration': 80}, {'id': 36, 'music_name': '蝉鸣', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/25/f9e734c932dd94a114bd1b75915bc01e845795.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/e7c4572fe1cf8c60ede8e0a885fc48bf997785.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/19/c84d21eee3695e2613521d7757913ee9183736.jpg', 'duration': 40}, {'id': 37, 'music_name': '风声', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/25/5c1c0e97cc10af7a6b63ec1d988eb9fc297640.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/20/09056958588183b9ebb5c51e03c67c25391078.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/20/5fccdba68f493aeaab29872553aeafcf479199.jpg', 'duration': 43}, {'id': 38, 'music_name': '八音盒', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/26/111a18fb971187872f33f1a36554533e783564.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/6a0f0cbc565b81d3eed3488c55129fbc280368.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/05b1b56c07b76d6cdcb8ce62025db582595543.jpg', 'duration': 74}, {'id': 39, 'music_name': '火车', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/08/26/74ed1079750db591bf36fb41a852ac60792549.mp3', 'big_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/df5ebb4e39ad879ce231f64d1705c137427342.jpg', 'small_cover': 'https://image.office.bzdev.net/mindfulness/2020/08/26/e7e59efb3baea7ab7976942b2b8c879f675493.jpg', 'duration': 48}], 'guide_language': [{'id': 1, 'guide_name': '洗脑神曲-啦啦啦阿拉啦啦啦啦啦啦啦啦啦啦啦啦', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/09/bf8d32023d98bc26bb8cecd93edf6b90240936.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/05/423593f873736c1aef83a1fa09cbcc82976916.jpg', 'duration': 758, 'describe': '测试内容放厕所翁多多多多多多多多多多多多多多'}, {'id': 2, 'guide_name': '引导语2', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/09/fda4e75950f4d597298f80bc69e70c40326593.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/09/54b9fda3773537295b5f631badd6440d742476.jpg', 'duration': 315, 'describe': '放电饭锅'}, {'id': 3, 'guide_name': '正念冥想', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/11/d814be57dae3c8617e389661a2660c0c865393.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/09/dec9c99554892c3fa57dfe93834fe8a3786947.jpg', 'duration': 315, 'describe': '截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n\r\n\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n\r\n\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n截至2018年，天河汽车客运站经营班车通达中国内地20多个省、直辖市、自治区和广东省内的粤东、粤西、粤北等地区，运营班车线路235条，其中省际线路127条、省内线路108条；参营班车1500余台，日均发车数量1850班次，日均发送旅客数量3.5万人次，高峰日最高发送旅客数量9万人次 [3]  。\r\n'}, {'id': 4, 'guide_name': '三生三世', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/09/c8dbcc7a2b6fccd8a5fc2297472a1a4c325647.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/09/987ee6589b0a54ac66207a9004ec0145124677.jpg', 'duration': 342, 'describe': '引导语内容引导语5引导语5引导语5引导语5引导语5引导语5引导语5引导语5'}, {'id': 5, 'guide_name': '测试23', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/09/a69353da2e6b73ee3eb4ec172a578223733237.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/05/423593f873736c1aef83a1fa09cbcc82976916.jpg', 'duration': 758, 'describe': '测试内容'}, {'id': 6, 'guide_name': '洗脑神曲-啦啦啦阿拉啦啦啦啦啦啦啦啦啦啦啦啦是擦擦擦擦擦擦擦擦擦擦擦擦擦擦擦擦擦擦擦擦撒啊啊啊啊啊啊', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/10/07fb6e3fc8b63c9dc7791418597aa6c8985254.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/a027fd6c151b06efe596f1a34770303b783817.jpg', 'duration': 315, 'describe': '洒出错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错\r\nacascassacascacascsacas\r\nascccccccccccccccascccccccccccccccccascascascascascascascascascascascascascascascascascascascascascascascascascasca撒擦啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊撒擦啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\r\n\r\n\r\n\r\ncs\r\n\r\ncascacascascasascascascasscsaccscascascascascascascascascascascascascascascascascasacscscscscscscscscs1'}, {'id': 7, 'guide_name': '撒擦擦错错错错错错错错错错错错错', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/10/5cc58b49fe4b3b23596357849c69353c898844.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/d5760449b5d8958fa515b01e91bb5c57562077.jpg', 'duration': 758, 'describe': '阿萨擦错错错错错错错错错错错错错错错错错错\r\ncasc\r\nascasasccsacas\r\ncacascs\r\n\r\nc阿萨擦是'}, {'id': 8, 'guide_name': '自在正念', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/06/10/6143f6082467a27f44c2724d19e1cbf1757120.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/dac95b027f54c8b3b8a6e176d025d0bf120176.jpg', 'duration': 315, 'describe': '擦洒洒水所所所所所所所所所所所所所所所所所所所'}, {'id': 11, 'guide_name': '土豆', 'audio_url': 'http://astatic.office.bzdev.net/mindfulness/2020/09/23/96e9daa2223980e42ac6b4dd9b5cbfad133410.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/06/10/578ed0a0918bb828a14f3e3f00178853794419.jpg', 'duration': 634, 'describe': '阿萨擦错错错错错错错错错错错错错错'}, {'id': 12, 'guide_name': '身体扫描', 'audio_url': 'http://astatic.bozhong.com/mindfulness/2020/09/23/adeba031d894e90ca379fbd3314d3412574160.mp3', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/09/27/a9381132f8f5b77ff7c0b50f5070b98a753812.gif', 'duration': 634, 'describe': '阿萨擦错错错错错错错错错错错错错错错错错错错错错'}], 'warning_tone': [{'warning_tone_id': 1, 'name': '鸟叫', 'audio': 'http://astatic.office.bzdev.net/mindfulness/2020/07/28/ab2017832f226ba3bdf92c845b536de4445295.mp3', 'pic': 'https://image.office.bzdev.net/mindfulness/2020/07/28/35402f447e89df6f096a6276e5417fc4642097.jpg'}, {'warning_tone_id': 2, 'name': '火声1111', 'audio': 'http://astatic.bozhong.com/mindfulness/2020/06/19/b7a114de4809638e56c40fe17e02d6e7329897.mp3', 'pic': 'https://image.office.bzdev.net/mindfulness/2020/06/11/169b27d35f6bcc539c3cc6f69bd99c86362905.gif'}, {'warning_tone_id': 3, 'name': 'GONG HANCHI', 'audio': 'http://astatic.office.bzdev.net/mindfulness/2020/09/22/7e1ecfbffe7ae9625a7e0758da1de70c941193.mp3', 'pic': 'https://image.office.bzdev.net/mindfulness/2020/09/22/733147fbf02eef39362ba522a9c254ac254565.gif'}, {'warning_tone_id': 4, 'name': 'DENGZE', 'audio': 'http://astatic.office.bzdev.net/mindfulness/2020/09/25/e8595ff5794283b9153f2fecc579b639906941.mp3', 'pic': 'https://image.office.bzdev.net/mindfulness/2020/09/25/6d6a6cf0bfe998551f5318eff3bc2b7b142486.jpg'}, {'warning_tone_id': 5, 'name': '和SaaS江苏科技擦查看就A出口叫啊是', 'audio': 'http://astatic.office.bzdev.net/mindfulness/2020/06/11/d814be57dae3c8617e389661a2660c0c865393.mp3', 'pic': 'https://image.office.bzdev.net/mindfulness/2020/09/25/5adf760449d9e31518e752a75b5fba34156365.jpg'}, {'warning_tone_id': 6, 'name': 'DENGZEDE', 'audio': 'http://astatic.bozhong.com/mindfulness/2020/06/19/94a5eb2dd4e5859d97c4bcf643f9f086429629.mp3', 'pic': 'https://image.office.bzdev.net/mindfulness/2020/09/27/d1ef5291a7dbbfd60efff7d3c2c326bf258280.gif'}, {'warning_tone_id': 7, 'name': '三生三世', 'audio': 'http://astatic.office.bzdev.net/mindfulness/2020/09/25/e8595ff5794283b9153f2fecc579b639906941.mp3', 'pic': 'https://image.office.bzdev.net/mindfulness/2020/09/27/bf8348f68c65744cc3ca3201a9d10538939475.gif'}]}}
+用例通过
+2020-10-14 13:47:02,483-INFO-my_log.py-mindfulness-日志信息:用例通过
+用例结束
+2020-10-14 13:47:02,558-INFO-my_log.py-mindfulness-日志信息:用例结束
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_3' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_03</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_3' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_3'>通过</button>
+    <div id='div_pt1_3' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_3' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_3'>通过</button>
+    <div id='div_pt1_3' class="collapse in" align="left">
+    <pre>
+    
+pt1_3: 2020-10-14 13:47:02,558-INFO-my_log.py-mindfulness-日志信息:开始测试
+开始测试
+正在进行第3条用例:数据正常显示
+2020-10-14 13:47:02,559-INFO-my_log.py-mindfulness-日志信息:正在进行第3条用例:数据正常显示
+测试数据为None
+2020-10-14 13:47:02,559-INFO-my_log.py-mindfulness-日志信息:测试数据为None
+[32m正在进行get请求 
+测试结果是{'error_code': 0, 'data': {'home_activity': {'icon': 'https://fs.bozhong.com/2020060217183825865.gif', 'url': 'http://source.office.bzdev.net/activity/mindfulness/myreports/#/', 'show': 1}, 'home_ranking': {'url': 'https://source.office.bzdev.net/activity/mindfulness/ranking/#/', 'show': 1}, 'settings_feedback': {'url': 'http://source.office.bzdev.net/fkzr/feedback/', 'show': 1}}}
+2020-10-14 13:47:02,701-INFO-my_log.py-mindfulness-日志信息:测试结果是{'error_code': 0, 'data': {'home_activity': {'icon': 'https://fs.bozhong.com/2020060217183825865.gif', 'url': 'http://source.office.bzdev.net/activity/mindfulness/myreports/#/', 'show': 1}, 'home_ranking': {'url': 'https://source.office.bzdev.net/activity/mindfulness/ranking/#/', 'show': 1}, 'settings_feedback': {'url': 'http://source.office.bzdev.net/fkzr/feedback/', 'show': 1}}}
+用例通过
+2020-10-14 13:47:02,701-INFO-my_log.py-mindfulness-日志信息:用例通过
+用例结束
+2020-10-14 13:47:02,751-INFO-my_log.py-mindfulness-日志信息:用例结束
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_4' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_04</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_4' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_4'>通过</button>
+    <div id='div_pt1_4' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_4' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_4'>通过</button>
+    <div id='div_pt1_4' class="collapse in" align="left">
+    <pre>
+    
+pt1_4: 2020-10-14 13:47:02,752-INFO-my_log.py-mindfulness-日志信息:开始测试
+开始测试
+正在进行第4条用例:数据正常显示
+2020-10-14 13:47:02,753-INFO-my_log.py-mindfulness-日志信息:正在进行第4条用例:数据正常显示
+测试数据为None
+2020-10-14 13:47:02,753-INFO-my_log.py-mindfulness-日志信息:测试数据为None
+[32m正在进行get请求 
+测试结果是{'error_code': 1004, 'error_message': '接口暂未使用'}
+2020-10-14 13:47:02,887-INFO-my_log.py-mindfulness-日志信息:测试结果是{'error_code': 1004, 'error_message': '接口暂未使用'}
+用例通过
+2020-10-14 13:47:02,888-INFO-my_log.py-mindfulness-日志信息:用例通过
+用例结束
+2020-10-14 13:47:02,936-INFO-my_log.py-mindfulness-日志信息:用例结束
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_5' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_05</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_5' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_5'>通过</button>
+    <div id='div_pt1_5' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_5' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_5'>通过</button>
+    <div id='div_pt1_5' class="collapse in" align="left">
+    <pre>
+    
+pt1_5: 2020-10-14 13:47:02,937-INFO-my_log.py-mindfulness-日志信息:开始测试
+开始测试
+正在进行第5条用例:数据正常显示
+2020-10-14 13:47:02,937-INFO-my_log.py-mindfulness-日志信息:正在进行第5条用例:数据正常显示
+测试数据为{'action':'list','page':1,'limit':10,'sort':'default'}
+2020-10-14 13:47:02,937-INFO-my_log.py-mindfulness-日志信息:测试数据为{'action':'list','page':1,'limit':10,'sort':'default'}
+[32m正在进行get请求 
+测试结果是{'error_code': 0, 'data': {'list': [{'id': 13, 'title': '台湾试管行，植入优质囊胚一枚，5天双杠！', 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/09/f09b4b29e26f8d78945565bac78a0376891435.jpg', 'content': '爱车飒飒撒所所所所所所所所所所所所所所所所所所所所所', 'views': 3}, {'id': 5, 'title': '开放式觉察', 'video_url': 'https://fs.bozhong.com/2020050710403290682.mp4', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/decf9ecd79ee2eadfe4a87e7f2fc0db2694186.jpg', 'content': '  \t我们知道，正念的定义是：有意的、不加评判的、对当下的觉察。觉察可以分为两种类型，包括：集中式的觉察和开放式的觉察，本次我们将主要围绕“开放式的觉察”进行讲解。       \t开放式的觉察，英文 open monitoring，是巴利语 vipassana，可以翻译为“顿悟（insight）”。 在开放式觉察练习中，我们会打开所有的感官，清楚地意识到所有正在发生的事 ，这可以是所有你听到的声音', 'views': 44}, {'id': 4, 'title': '集中式觉察（集中注意力）', 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/d55ebb28104b1e81803d2391dfccac14444385.jpg', 'content': '  \t我们知道，正念的定义是：有意的、不加评判的、对当下的觉察。觉察可以分为两种类型，包括：集中式的觉察和开放式的觉察，本次我们将主要围绕“集中式的觉察”进行讲解。     集中式的觉察 ，英文 focus attention，在巴利语中被称为萨马塔（samatha）。这类练习 又称为集中注意力冥想 ，是基础的正念冥想练习。    \t它其实是练习一种“定”的工夫， 目标是让练习者将其注意力集中在一', 'views': 50}, {'id': 6, 'title': '练习正念一定要打坐吗', 'video_url': 'https://fs.bozhong.com/2020050710542957891.mp4', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/9741269d943d8807f9dcf2eb40eb55bc788231.jpg', 'content': '  \t不一定。      \t正念冥想的修习形式有很多种，有坐着（坐禅）、躺着（卧禅）、站着（立禅）、甚至是行走（行禅），并把修习状态延续到我们的日常生活中（生活禅），无论何种形式，修习过程都需要我们全程保持“觉察”，即觉知当下的一切。      \t在坐禅中，盘腿与否并不是最重要的，只要能够达到保持觉察（即练习过程中，人是清醒的）就可以了。时间较短的练习，比如3或5分钟，无论盘腿或是靠在沙发上，我们', 'views': 28}, {'id': 8, 'title': '测试', 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/d194fa841642ac289cf1bc3f6f1448b4858848.jpg', 'content': '擦撒撒撒撒飒飒飒飒飒飒是', 'views': 10}, {'id': 22, 'title': '新手正念冥想那些事儿（一）', 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/08/20/6251254a6662e59e5199d7576565c386715000.jpg', 'content': '     \t什么是冥想        \t冥想从字面上来理解的话，“冥”即泯灭、停止，“想”即想法、念头，“冥想”即泯灭想法、停止念头，从而达到宁静无虑的的状态。        \t心理学上认为，冥想是通过自我身心调节，建立一种特殊注意机制来影响个体心理过程的一系列有关练习。冥想并非神秘莫测的宗教仪式，而是已被科研验证的一种简单有效的大脑训练方式，就如同健身的对象是身体一样，冥想的对象是大脑。    ', 'views': 6}, {'id': 11, 'title': '擦擦擦', 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/dfa16555564bba3467dd95e6b2749c65640225.jpg', 'content': '少时诵诗书所所所所所所所所所所所sssssssssssssd百度', 'views': 8}, {'id': 9, 'title': '台湾试管行，植入优质囊胚一枚，5天双杠！', 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/66619cdb89ed1d265f02ff57e619800a115225.jpg', 'content': '  \tascccccccccccccc      \tascscascascccascascasca  ', 'views': 6}, {'id': 10, 'title': '啊擦撒', 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/c5bca11f0d8c9d3a108213e14a21dbe4501096.jpg', 'content': '  \tascccccccccccccccccccccccasascs      \t擦撒擦拭擦撒擦拭擦撒擦拭擦撒擦拭擦撒擦拭擦撒擦拭擦撒擦拭擦撒擦拭擦撒擦撒擦时擦擦拭从      \t      \t      \t      \t      \t      \t      \t      \tacsssssssssssssssssss      \t      \t      \t      \t      \t     ', 'views': 6}, {'id': 2, 'title': 'What is an Irrgular Period?What is an Irrgular Period?What is an Irrgular Period?What is an Irrgular', 'video_url': 'https://fs.bozhong.com/2020050719121422992.mp4', 'cover': 'https://image.office.bzdev.net/flome/2019/07/02/2983b0a189258b9b6220650dc755d6c0247319.jpg', 'content': '  \tWhat is an Irrgular Period?What is an Irrgular Period?What is an Irrgular Period?       \tWhat is an Irrgular Period?What is an Irrgular Period?  \tWhat is an Irrgular Period?       \tWhat is an Irrgu', 'views': 281}]}}
+2020-10-14 13:47:03,082-INFO-my_log.py-mindfulness-日志信息:测试结果是{'error_code': 0, 'data': {'list': [{'id': 13, 'title': '台湾试管行，植入优质囊胚一枚，5天双杠！', 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/09/f09b4b29e26f8d78945565bac78a0376891435.jpg', 'content': '爱车飒飒撒所所所所所所所所所所所所所所所所所所所所所', 'views': 3}, {'id': 5, 'title': '开放式觉察', 'video_url': 'https://fs.bozhong.com/2020050710403290682.mp4', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/decf9ecd79ee2eadfe4a87e7f2fc0db2694186.jpg', 'content': '  \t我们知道，正念的定义是：有意的、不加评判的、对当下的觉察。觉察可以分为两种类型，包括：集中式的觉察和开放式的觉察，本次我们将主要围绕“开放式的觉察”进行讲解。       \t开放式的觉察，英文 open monitoring，是巴利语 vipassana，可以翻译为“顿悟（insight）”。 在开放式觉察练习中，我们会打开所有的感官，清楚地意识到所有正在发生的事 ，这可以是所有你听到的声音', 'views': 44}, {'id': 4, 'title': '集中式觉察（集中注意力）', 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/d55ebb28104b1e81803d2391dfccac14444385.jpg', 'content': '  \t我们知道，正念的定义是：有意的、不加评判的、对当下的觉察。觉察可以分为两种类型，包括：集中式的觉察和开放式的觉察，本次我们将主要围绕“集中式的觉察”进行讲解。     集中式的觉察 ，英文 focus attention，在巴利语中被称为萨马塔（samatha）。这类练习 又称为集中注意力冥想 ，是基础的正念冥想练习。    \t它其实是练习一种“定”的工夫， 目标是让练习者将其注意力集中在一', 'views': 50}, {'id': 6, 'title': '练习正念一定要打坐吗', 'video_url': 'https://fs.bozhong.com/2020050710542957891.mp4', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/9741269d943d8807f9dcf2eb40eb55bc788231.jpg', 'content': '  \t不一定。      \t正念冥想的修习形式有很多种，有坐着（坐禅）、躺着（卧禅）、站着（立禅）、甚至是行走（行禅），并把修习状态延续到我们的日常生活中（生活禅），无论何种形式，修习过程都需要我们全程保持“觉察”，即觉知当下的一切。      \t在坐禅中，盘腿与否并不是最重要的，只要能够达到保持觉察（即练习过程中，人是清醒的）就可以了。时间较短的练习，比如3或5分钟，无论盘腿或是靠在沙发上，我们', 'views': 28}, {'id': 8, 'title': '测试', 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/d194fa841642ac289cf1bc3f6f1448b4858848.jpg', 'content': '擦撒撒撒撒飒飒飒飒飒飒是', 'views': 10}, {'id': 22, 'title': '新手正念冥想那些事儿（一）', 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/08/20/6251254a6662e59e5199d7576565c386715000.jpg', 'content': '     \t什么是冥想        \t冥想从字面上来理解的话，“冥”即泯灭、停止，“想”即想法、念头，“冥想”即泯灭想法、停止念头，从而达到宁静无虑的的状态。        \t心理学上认为，冥想是通过自我身心调节，建立一种特殊注意机制来影响个体心理过程的一系列有关练习。冥想并非神秘莫测的宗教仪式，而是已被科研验证的一种简单有效的大脑训练方式，就如同健身的对象是身体一样，冥想的对象是大脑。    ', 'views': 6}, {'id': 11, 'title': '擦擦擦', 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/dfa16555564bba3467dd95e6b2749c65640225.jpg', 'content': '少时诵诗书所所所所所所所所所所所sssssssssssssd百度', 'views': 8}, {'id': 9, 'title': '台湾试管行，植入优质囊胚一枚，5天双杠！', 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/66619cdb89ed1d265f02ff57e619800a115225.jpg', 'content': '  \tascccccccccccccc      \tascscascascccascascasca  ', 'views': 6}, {'id': 10, 'title': '啊擦撒', 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/c5bca11f0d8c9d3a108213e14a21dbe4501096.jpg', 'content': '  \tascccccccccccccccccccccccasascs      \t擦撒擦拭擦撒擦拭擦撒擦拭擦撒擦拭擦撒擦拭擦撒擦拭擦撒擦拭擦撒擦拭擦撒擦撒擦时擦擦拭从      \t      \t      \t      \t      \t      \t      \t      \tacsssssssssssssssssss      \t      \t      \t      \t      \t     ', 'views': 6}, {'id': 2, 'title': 'What is an Irrgular Period?What is an Irrgular Period?What is an Irrgular Period?What is an Irrgular', 'video_url': 'https://fs.bozhong.com/2020050719121422992.mp4', 'cover': 'https://image.office.bzdev.net/flome/2019/07/02/2983b0a189258b9b6220650dc755d6c0247319.jpg', 'content': '  \tWhat is an Irrgular Period?What is an Irrgular Period?What is an Irrgular Period?       \tWhat is an Irrgular Period?What is an Irrgular Period?  \tWhat is an Irrgular Period?       \tWhat is an Irrgu', 'views': 281}]}}
+用例通过
+2020-10-14 13:47:03,083-INFO-my_log.py-mindfulness-日志信息:用例通过
+用例结束
+2020-10-14 13:47:03,131-INFO-my_log.py-mindfulness-日志信息:用例结束
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_6' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_06</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_6' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_6'>通过</button>
+    <div id='div_pt1_6' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_6' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_6'>通过</button>
+    <div id='div_pt1_6' class="collapse in" align="left">
+    <pre>
+    
+pt1_6: 2020-10-14 13:47:03,131-INFO-my_log.py-mindfulness-日志信息:开始测试
+开始测试
+正在进行第6条用例:不传参数
+2020-10-14 13:47:03,132-INFO-my_log.py-mindfulness-日志信息:正在进行第6条用例:不传参数
+测试数据为{'action':'','page':'','limit':'','sort':''}
+2020-10-14 13:47:03,132-INFO-my_log.py-mindfulness-日志信息:测试数据为{'action':'','page':'','limit':'','sort':''}
+[32m正在进行get请求 
+测试结果是{'error_code': 110, 'error_message': '数据类型错误'}
+2020-10-14 13:47:03,279-INFO-my_log.py-mindfulness-日志信息:测试结果是{'error_code': 110, 'error_message': '数据类型错误'}
+用例通过
+2020-10-14 13:47:03,279-INFO-my_log.py-mindfulness-日志信息:用例通过
+用例结束
+2020-10-14 13:47:03,327-INFO-my_log.py-mindfulness-日志信息:用例结束
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_7' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_07</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_7' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_7'>通过</button>
+    <div id='div_pt1_7' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_7' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_7'>通过</button>
+    <div id='div_pt1_7' class="collapse in" align="left">
+    <pre>
+    
+pt1_7: 2020-10-14 13:47:03,327-INFO-my_log.py-mindfulness-日志信息:开始测试
+开始测试
+正在进行第7条用例:传info
+2020-10-14 13:47:03,328-INFO-my_log.py-mindfulness-日志信息:正在进行第7条用例:传info
+测试数据为{'action':'info','page':1,'limit':10,'sort':'default'}
+2020-10-14 13:47:03,328-INFO-my_log.py-mindfulness-日志信息:测试数据为{'action':'info','page':1,'limit':10,'sort':'default'}
+[32m正在进行get请求 
+测试结果是{'error_code': 110, 'error_message': 'id parameter is necessary.'}
+2020-10-14 13:47:03,469-INFO-my_log.py-mindfulness-日志信息:测试结果是{'error_code': 110, 'error_message': 'id parameter is necessary.'}
+用例通过
+2020-10-14 13:47:03,469-INFO-my_log.py-mindfulness-日志信息:用例通过
+用例结束
+2020-10-14 13:47:03,517-INFO-my_log.py-mindfulness-日志信息:用例结束
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_8' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_08</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_8' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_8'>通过</button>
+    <div id='div_pt1_8' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_8' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_8'>通过</button>
+    <div id='div_pt1_8' class="collapse in" align="left">
+    <pre>
+    
+pt1_8: 2020-10-14 13:47:03,518-INFO-my_log.py-mindfulness-日志信息:开始测试
+开始测试
+正在进行第8条用例:传id
+2020-10-14 13:47:03,518-INFO-my_log.py-mindfulness-日志信息:正在进行第8条用例:传id
+测试数据为{'id':12}
+2020-10-14 13:47:03,519-INFO-my_log.py-mindfulness-日志信息:测试数据为{'id':12}
+[32m正在进行get请求 
+测试结果是{'error_code': 0, 'data': {'id': 12, 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/e58f6842bcd92ab947e24d6762ee453c140314.jpg', 'title': '擦撒撒撒撒飒飒飒飒是上擦啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊', 'content': '按时吃错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错'}}
+2020-10-14 13:47:03,664-INFO-my_log.py-mindfulness-日志信息:测试结果是{'error_code': 0, 'data': {'id': 12, 'video_url': '', 'cover': 'https://image.office.bzdev.net/mindfulness/2020/05/07/e58f6842bcd92ab947e24d6762ee453c140314.jpg', 'title': '擦撒撒撒撒飒飒飒飒是上擦啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊', 'content': '按时吃错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错错'}}
+用例通过
+2020-10-14 13:47:03,665-INFO-my_log.py-mindfulness-日志信息:用例通过
+用例结束
+2020-10-14 13:47:03,711-INFO-my_log.py-mindfulness-日志信息:用例结束
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_9' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_09</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_9' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_9'>通过</button>
+    <div id='div_pt1_9' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_9' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_9'>通过</button>
+    <div id='div_pt1_9' class="collapse in" align="left">
+    <pre>
+    
+pt1_9: 2020-10-14 13:47:03,712-INFO-my_log.py-mindfulness-日志信息:开始测试
+开始测试
+正在进行第9条用例:点击量-id不填写
+2020-10-14 13:47:03,713-INFO-my_log.py-mindfulness-日志信息:正在进行第9条用例:点击量-id不填写
+测试数据为{'id':''}
+2020-10-14 13:47:03,713-INFO-my_log.py-mindfulness-日志信息:测试数据为{'id':''}
+[32m正在进行post请求 
+测试结果是{'error_code': 110, 'error_message': 'type parameter is necessary.'}
+2020-10-14 13:47:03,845-INFO-my_log.py-mindfulness-日志信息:测试结果是{'error_code': 110, 'error_message': 'type parameter is necessary.'}
+用例通过
+2020-10-14 13:47:03,845-INFO-my_log.py-mindfulness-日志信息:用例通过
+用例结束
+2020-10-14 13:47:03,893-INFO-my_log.py-mindfulness-日志信息:用例结束
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_10' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_10</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_10' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_10'>通过</button>
+    <div id='div_pt1_10' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_10' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_10'>通过</button>
+    <div id='div_pt1_10' class="collapse in" align="left">
+    <pre>
+    
+pt1_10: 2020-10-14 13:47:03,893-INFO-my_log.py-mindfulness-日志信息:开始测试
+开始测试
+正在进行第10条用例:点击量-填写id
+2020-10-14 13:47:03,894-INFO-my_log.py-mindfulness-日志信息:正在进行第10条用例:点击量-填写id
+测试数据为{'id':12,'type':'plays'}
+2020-10-14 13:47:03,894-INFO-my_log.py-mindfulness-日志信息:测试数据为{'id':12,'type':'plays'}
+[32m正在进行post请求 
+测试结果是{'error_code': 0, 'data': []}
+2020-10-14 13:47:04,037-INFO-my_log.py-mindfulness-日志信息:测试结果是{'error_code': 0, 'data': []}
+用例通过
+2020-10-14 13:47:04,038-INFO-my_log.py-mindfulness-日志信息:用例通过
+用例结束
+2020-10-14 13:47:04,084-INFO-my_log.py-mindfulness-日志信息:用例结束
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>test_cases.test_login.TestLogin</td>
+    <td class="text-center">3</td>
+    <td class="text-center">3</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c2',3)" class="detail" id='c2'>详细</a></td>
+</tr>
+
+<tr id='pt2_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_1</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt2_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt2_1'>通过</button>
+    <div id='div_pt2_1' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt2_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt2_1'>通过</button>
+    <div id='div_pt2_1' class="collapse in" align="left">
+    <pre>
+    
+pt2_1: 2020-10-14 13:47:04,085-INFO-my_log.py-mindfulness-日志信息:开始测试
+开始测试
+正在进行第1条用例:发送验证码
+2020-10-14 13:47:04,085-INFO-my_log.py-mindfulness-日志信息:正在进行第1条用例:发送验证码
+测试数据为{'captcha_type': 'member_register', 'captcha_count': 1, 'phone_prefix': 86, 'mobile': 13200000001, 'access_token': None}
+2020-10-14 13:47:04,086-INFO-my_log.py-mindfulness-日志信息:测试数据为{'captcha_type': 'member_register', 'captcha_count': 1, 'phone_prefix': 86, 'mobile': 13200000001, 'access_token': None}
+D:\python36\lib\site-packages\urllib3\connectionpool.py:847: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning)
+[32m正在进行post请求 
+测试结果是{'error_code': 0, 'data': {'idstring': '9522'}}
+2020-10-14 13:47:04,909-INFO-my_log.py-mindfulness-日志信息:测试结果是{'error_code': 0, 'data': {'idstring': '9522'}}
+用例通过
+2020-10-14 13:47:04,909-INFO-my_log.py-mindfulness-日志信息:用例通过
+用例结束
+2020-10-14 13:47:04,957-INFO-my_log.py-mindfulness-日志信息:用例结束
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt2_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_2</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt2_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt2_2'>通过</button>
+    <div id='div_pt2_2' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt2_2' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt2_2'>通过</button>
+    <div id='div_pt2_2' class="collapse in" align="left">
+    <pre>
+    
+pt2_2: 2020-10-14 13:47:04,958-INFO-my_log.py-mindfulness-日志信息:开始测试
+开始测试
+正在进行第2条用例:输入验证码
+2020-10-14 13:47:04,958-INFO-my_log.py-mindfulness-日志信息:正在进行第2条用例:输入验证码
+测试数据为{'is_debug': 1, 'mobilecaptcha': '9522', 'phone_prefix': 86, 'phone': 13200000001, 'type': 1}
+2020-10-14 13:47:04,964-INFO-my_log.py-mindfulness-日志信息:测试数据为{'is_debug': 1, 'mobilecaptcha': '9522', 'phone_prefix': 86, 'phone': 13200000001, 'type': 1}
+D:\python36\lib\site-packages\urllib3\connectionpool.py:847: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning)
+[32m正在进行post请求 
+测试结果是{'error_code': 0, 'data': {'app_uid': 331248, 'username': 't1602574887685', 'nickname': '132****0001', 'access_token': '3243514b56f45064ce236f28b1b79437', 'expires_in': 1607768107, 'seedit_auth': 'BnjllupV52SRNyoBG5VlqjBjIkpnCxyaIv6U22p%2BGn3Yz%2FCB7l8SW5%2BDC7ycoBL0BZErUyCmw1UAIczGmLEm4r72eDXTKShPvGZra6OtWBE%3D', 'is_bind_phone': 1, 'is_new': 0}}
+2020-10-14 13:47:05,180-INFO-my_log.py-mindfulness-日志信息:测试结果是{'error_code': 0, 'data': {'app_uid': 331248, 'username': 't1602574887685', 'nickname': '132****0001', 'access_token': '3243514b56f45064ce236f28b1b79437', 'expires_in': 1607768107, 'seedit_auth': 'BnjllupV52SRNyoBG5VlqjBjIkpnCxyaIv6U22p%2BGn3Yz%2FCB7l8SW5%2BDC7ycoBL0BZErUyCmw1UAIczGmLEm4r72eDXTKShPvGZra6OtWBE%3D', 'is_bind_phone': 1, 'is_new': 0}}
+用例通过
+2020-10-14 13:47:05,181-INFO-my_log.py-mindfulness-日志信息:用例通过
+用例结束
+2020-10-14 13:47:05,229-INFO-my_log.py-mindfulness-日志信息:用例结束
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt2_3' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_3</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt2_3' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt2_3'>通过</button>
+    <div id='div_pt2_3' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt2_3' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt2_3'>通过</button>
+    <div id='div_pt2_3' class="collapse in" align="left">
+    <pre>
+    
+pt2_3: 2020-10-14 13:47:05,230-INFO-my_log.py-mindfulness-日志信息:开始测试
+开始测试
+正在进行第3条用例:获取个人信息
+2020-10-14 13:47:05,230-INFO-my_log.py-mindfulness-日志信息:正在进行第3条用例:获取个人信息
+测试数据为{'access_token': '3243514b56f45064ce236f28b1b79437'}
+2020-10-14 13:47:05,231-INFO-my_log.py-mindfulness-日志信息:测试数据为{'access_token': '3243514b56f45064ce236f28b1b79437'}
+D:\python36\lib\site-packages\urllib3\connectionpool.py:847: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning)
+[32m正在进行get请求 
+测试结果是{'error_code': 0, 'data': {'app_uid': 331248, 'username': 't1602574887685', 'nickname': '132****0001', 'phone': '132****0001', 'avatar': '', 'length_of_time': 0, 'length_of_day': 0, 'nickname_status': 0, 'today_is_push': 0, 'oauth': {'wechat': {'authorized': 0, 'nickname': '', 'unionid': ''}}, 'gender': 0, 'birthday': '', 'constellation': '', 'show_type': 0, 'country': '', 'province': '', 'city': '', 'code': 0, 'is_abroad': 0, 'occupation': 0, 'introduce': '', 'today_length_of_time': 0, 'consecutive_days': 0}}
+2020-10-14 13:47:05,446-INFO-my_log.py-mindfulness-日志信息:测试结果是{'error_code': 0, 'data': {'app_uid': 331248, 'username': 't1602574887685', 'nickname': '132****0001', 'phone': '132****0001', 'avatar': '', 'length_of_time': 0, 'length_of_day': 0, 'nickname_status': 0, 'today_is_push': 0, 'oauth': {'wechat': {'authorized': 0, 'nickname': '', 'unionid': ''}}, 'gender': 0, 'birthday': '', 'constellation': '', 'show_type': 0, 'country': '', 'province': '', 'city': '', 'code': 0, 'is_abroad': 0, 'occupation': 0, 'introduce': '', 'today_length_of_time': 0, 'consecutive_days': 0}}
+用例通过
+2020-10-14 13:47:05,446-INFO-my_log.py-mindfulness-日志信息:用例通过
+用例结束
+2020-10-14 13:47:05,493-INFO-my_log.py-mindfulness-日志信息:用例结束
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='total_row' class="text-center active">
+    <td>总计</td>
+    <td>13</td>
+    <td>13</td>
+    <td>0</td>
+    <td>0</td>
+    <td>通过率：100.00%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+</body>
+</html>
