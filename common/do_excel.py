@@ -5,7 +5,7 @@
 #IDE      :PyCharm
 from openpyxl import load_workbook
 from common import project_path
-
+from common.get_info_data import GetInfoData
 class DoExce():
     def __init__(self,file_name):
         self.file_name=file_name
@@ -14,6 +14,10 @@ class DoExce():
     def get_excel(self,sheetname):
         wb = load_workbook(self.file_name)
         sheet=wb[sheetname]
+        #
+        # if sheet_name=='login':
+        #     phone=sheet.cell(1, 2).value
+        #     setattr(GetInfoData,'login_phone',phone)
         test_data=[]
         for i in range(2,sheet.max_row+1):
             sub_data={}
@@ -22,7 +26,11 @@ class DoExce():
             sub_data['module'] = sheet.cell(i, 3).value
             sub_data['description'] = sheet.cell(i, 4).value
             sub_data['url'] = sheet.cell(i, 5).value
-            sub_data['param']=sheet.cell(i,6).value
+
+            if sheet.cell(i,6).value.find('${phone}')!=-1:
+                sub_data['param'] = sheet.cell(i, 6).value.replace('${phone}',str(GetInfoData.login_phone))
+            else:
+                sub_data['param'] = sheet.cell(i,6).value
             sub_data['ExpectedResult']=sheet.cell(i,7).value
             test_data.append(sub_data)
         return test_data
@@ -39,9 +47,7 @@ class DoExce():
 
 if __name__=='__main__':
     import json
-    sheet_name='login'
+    sheet_name='mindfulness'
     wb=DoExce(project_path.test_case_path).get_excel(sheet_name)
-    data=(wb[0]['param'])
-    print(type(data))
-    b=eval(data)
-    print(type(b))
+    # data=(wb[0]['param'])
+    print(wb)
