@@ -16,14 +16,13 @@ print(fak.ssn())'''
 
 
 import unittest
-
 from common.send_email import sendEmail
-
 from common import project_path
 from common import HTMLTestRunnerNew
 from test_cases.test_api import TestApi
 from test_cases.test_login import TestLogin
 
+#实例化测试套件
 suite=unittest.TestSuite()
 loader=unittest.TestLoader()
 
@@ -37,7 +36,8 @@ suite.addTest(loader.loadTestsFromTestCase(TestLogin))
 with open(project_path.report_path,'wb+') as file:
     runner=HTMLTestRunnerNew.HTMLTestRunner(stream=file, verbosity=2,title='接口测试',description='11111',tester='lgx')
     runner.run(suite)
-
+#执行完毕后发送邮件
+sendEmail().send_email("562500847@qq.com",project_path.report_path)
 
 
 

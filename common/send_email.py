@@ -3,10 +3,10 @@ import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText 
 from email.mime.application import MIMEApplication
-
+from common import project_path
 #邮件发送的用户名和密码  常识：第三方授权码
-_user = "1255811581@qq.com"
-_pwd = "jhqoipesmaxhbafc"
+_user = "562500847@qq.com"
+_pwd = "dtwnfdkysjsebeah"
 
 now = time.strftime('%Y-%m-%d_%H_%M_%S')#获取时间戳
 
@@ -34,4 +34,4 @@ class sendEmail:
         s.close()
 
 if __name__ == '__main__':
-    sendEmail().send_email("1027234522@qq.com")
+    sendEmail().send_email("562500847@qq.com",project_path.report_path)
