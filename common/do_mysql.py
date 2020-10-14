@@ -5,6 +5,7 @@
 #IDE      :PyCharm
 import mysql.connector
 from common import project_path
+from common.read_config import ReadConfig
 config={'host':'192.168.xx.xx',
         'user':'root',
         'password':'123456',
