@@ -10,24 +10,27 @@ from common import project_path
 import unittest
 from ddt import ddt,data
 from common.my_log import MyLog
-test_data=DoExce(project_path.test_case_path).get_excel('mindfulness')
-
+from common.get_info_data import GetInfoData,Application_profiles
+#替换ulr的环境域名
+test_data=Application_profiles(DoExce(project_path.test_case_path).get_excel('mindfulness'))
 
 @ddt
 class TestApi(unittest.TestCase):
+    '''文章，背景音的接口'''
     def setUp(self):
         self.logger=MyLog()
         self.logger.info('开始测试')
         print('开始测试')
     @data(*test_data)
-    def test_login(self,data_item):
+    def test_api(self,data_item):
+        # data_item=Application_profiles(data_item)
         print('正在进行第{0}条用例:{1}'.format(data_item['id'],data_item['description']))
         self.logger.info('正在进行第{0}条用例:{1}'.format(data_item['id'],data_item['description']))
 
         print('测试数据为{0}'.format(data_item['param']))
         self.logger.info('测试数据为{0}'.format(data_item['param']))
 
-        res=HttpRequtser().http_request(data_item['url'],eval(data_item['param']),data_item['HttpMethod'])
+        res=HttpRequtser().http_request(data_item['url'],eval(data_item['param']),data_item['HttpMethod'],verify=False,headers=GetInfoData().get_hander())
         print('测试结果是{0}'.format(res.json()))
         self.logger.info('测试结果是{0}'.format(res.json()))
         # if res.cookies:  # 任何非空数据的布尔值都为True  cookies是一个类字典的格式

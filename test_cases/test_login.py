@@ -11,13 +11,14 @@ import unittest
 from ddt import ddt,data
 from common.my_log import MyLog
 from common.do_mysql import DoMysql
-
+from common import setting
 test_data=DoExce(project_path.test_case_path).get_excel('login')
 
 header={'User-Agent':'bz-mindfulness-android-1.5.1 from android sdk version:24 mobile versionCode:7.0 phone model:PRO 7-H BZChannelNo-baidu',
-        'Content-Type':'application/x-www-form-urlencoded'}
+        }
 TOKEN=None
 @ddt
+@unittest.skipIf(setting.ENVIRONMENT == 3,'product不用验证登录' )
 class TestLogin(unittest.TestCase):
     def setUp(self):
         self.logger=MyLog()

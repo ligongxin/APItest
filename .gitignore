@@ -1,0 +1,17 @@
+# pycharm
+.idea/
+.DS_Store
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+/reports
+*.html
+*.png
+*.log
+
+*.local_setting.py
+
+*.HTMLTestRunnerNew.py
+

@@ -25,3 +25,9 @@ logs_path=os.path.join(Project_path,'report','log','testApi_log.txt')
 #html报告
 report_path=os.path.join(Project_path,'report','html_report','report.html')
 
+#beafult_html
+beafultHtml_path=os.path.join(Project_path,'report','html_report')
+
+
+#用例路径
+case_path=os.path.join(Project_path,'test_cases')
