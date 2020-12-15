@@ -42,7 +42,7 @@ class HttpRequtser:
 
         elif http_method.upper()=='DELETE':
             try:
-                res = requests.delete(url,param,**kwargs)
+                res = requests.delete(url,params=param,**kwargs)
                 print('正在进行DELETE请求 ')
                 logger.info('正在进行DELETE请求 ')
             except Exception as e:
@@ -100,11 +100,14 @@ if __name__=='__main__':
         # time.sleep()
     from common.do_excel import DoExce
     from common import project_path
-    data = DoExce(project_path.test_case_path).get_excel('community')[0]
-
+    data = DoExce(project_path.test_case_path).get_excel('community')[2]
     # data['param']['access_token']='88e613d776dc5db771b4bb418d96086d'
     param=eval(data['param'])
     param['access_token']='88e613d776dc5db771b4bb418d96086d'
     data['param']=param
     res=re1.http_request(data['url'],data['param'],data['HttpMethod'],headers=header,verify=False)
-    print(res.json()['data']['tid'])
+    print(res.json())
+    # print(res.json()['data']['tid'])
+
+    # httpr=requests.delete(data['url'],params=data['param'],headers=header,verify=False)
+    # print(httpr.json())

@@ -29,6 +29,10 @@ class DoExce():
 
             if sheet.cell(i,6).value.find('${phone}')!=-1:
                 sub_data['param'] = sheet.cell(i, 6).value.replace('${phone}',str(GetInfoData().login_phone))
+            # elif sheet.cell(i,6).value.find('${tid}') !=-1:
+            #     # sub_data['param'] = sheet.cell(i, 6).value.replace('${phone}', str(GetInfoData().get_community_id()))
+            #     sub_data['param'] = sheet.cell(i, 6).value.replace('${tid}', str(getattr(GetInfoData,'RID')))
+            #     print(GetInfoData.RID)
             else:
                 sub_data['param'] = sheet.cell(i,6).value
             sub_data['ExpectedResult']=sheet.cell(i,7).value

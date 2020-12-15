@@ -10,12 +10,40 @@ import random
 
 
 class GetInfoData:
-    def __init__(self):
+
+    RID=None
+
+    def __init__(self,sheet_name='info'):
+        self.sheet_name=sheet_name
         self.wb=load_workbook(project_path.test_case_path)
+        self.sheet=[sheet_name]
+        self.login_phone=self.wb[ self.sheet_name].cell(1,2).value
 
-        self.login_phone=self.wb['info'].cell(1,2).value
 
-        # product_token = wb['info'].cell(2,2).value
+    def get_community_id(self,flag=1,type='tid',write_id=None):
+        '''
+        :param flag:是否存取  0 存 1取  默认取
+        :param tpye: 类型  tid cid rid
+        :param write_id:写入的id
+        :return: 对应的id
+        '''
+        self.sheet = self.wb[self.sheet_name]
+        if flag ==0:
+            if type == 'cid':
+                self.sheet.cell(6,2).value = write_id
+            elif type == 'rid':
+                self.sheet.cell(7, 2).value = write_id
+            else:
+                self.sheet.cell(5, 2).value = write_id
+            self.wb.save('info')
+        else:
+            if type == 'cid':
+                id=self.wb[self.sheet_name].cell(6,2).value
+            elif type == 'rid':
+                id = self.wb[self.sheet_name].cell(7, 2).value
+            else:
+                id = self.wb[self.sheet_name].cell(5, 2).value
+            return id
 
     def get_token(self):
         if setting.ENVIRONMENT == 3:
@@ -56,4 +84,6 @@ def Application_profiles(data):
 if __name__ == '__main__':
     # print(type(GetInfoData.base_url))
     # print(GetInfoData().BaseUrl(setting.ENVIRONMENT))
-    print(GetInfoData().login_phone)
+    obj=GetInfoData()
+    obj.get_community_id(0,'cid','111181')
+    # print(obj.get_community_id(1))

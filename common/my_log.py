@@ -58,10 +58,5 @@ class MyLog:
     def critical(self,msg):
         self.my_log("CRITICAL",msg)
 
-# if __name__ == '__main__':
-    # my_logger=MyLog()
-    # my_logger.debug("天啦噜，水滴同学没有见过日志！")#收集
-    # my_logger.info("小场面 ，不要慌！")#print
-    # my_logger.warning("这么巧，Monica陪着水滴没见过日志！")
-    # my_logger.error("华华要生气了！")
-    # my_logger.critical("讲了100遍，还不懂，华华要奔溃了！")
+
+
