@@ -26,36 +26,28 @@ class HttpRequtser:
         if http_method.upper()=='POST':
             try:
                 res=requests.post(url,param,**kwargs)
-                print(OKGREEN+'正在进行post请求 ')
                 logger.info('正在进行post请求 ')
             except Exception as e:
-                print("post请求出现了异常:{0}".format(e))
                 logger.error("post请求出现了异常:{0}".format(e))
         elif http_method.upper()=='PUT':
             try:
                 res=requests.put(url,param,**kwargs)
-                print('正在进行PUT请求 ')
                 logger.info('正在进行PUT请求 ')
             except Exception as e:
-                print("PUT请求出现了异常:{0}".format(e))
                 logger.error("PUT请求出现了异常:{0}".format(e))
 
         elif http_method.upper()=='DELETE':
             try:
                 res = requests.delete(url,params=param,**kwargs)
-                print('正在进行DELETE请求 ')
                 logger.info('正在进行DELETE请求 ')
             except Exception as e:
-                print("DELETE请求出现了异常:{0}".format(e))
                 logger.error("DELETE请求出现了异常:{0}".format(e))
 
         else:
             try:
                 res=requests.get(url,param,**kwargs)
-                print(OKGREEN+'正在进行get请求 ')
                 logger.info(OKGREEN+'正在进行get请求 ')
             except Exception as e:
-                print("get请求出现了异常:{0}".format(e))
                 logger.error("get请求出现了异常:{0}".format(e))
 
         # access_token=res['data']['access_token']

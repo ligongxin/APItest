@@ -11,7 +11,7 @@ from ddt import ddt,data
 from common.my_log import MyLog
 from common.do_mysql import DoMysql
 from common import setting
-from common.get_info_data import GetInfoData,Application_profiles
+from common.get_info_data import GetInfoData,Application_profiles,replace_data
 
 #替换ulr的环境域名
 test_data=Application_profiles(DoExce(project_path.test_case_path).get_excel('community'))
@@ -27,8 +27,9 @@ class TestCommunity(unittest.TestCase):
     def test_community(self, data_item):
         self.logger.info('正在进行第{0}条用例:{1}'.format(data_item['id'], data_item['description']))
         #查找tid，cid，rid并替换
-        if data_item['param'].find('${tid}')!=-1:
-            data_item['param']=data_item['param'].replace('${tid}', str(getattr(GetInfoData,'RID')))
+        data_item=replace_data(data_item)
+        # if data_item['param'].find('${tid}')!=-1:
+        #     data_item['param']=data_item['param'].replace('${tid}', str(getattr(GetInfoData,'RID')))
         params = eval(data_item['param'])
         #添加token
         params['access_token'] = GetInfoData().get_token()
@@ -48,10 +49,8 @@ class TestCommunity(unittest.TestCase):
             if data_item['description'] == '发布动态':
                 tid = res.json()['data']['tid']
                 # 替换info里的tid
-                global RID
-                setattr(GetInfoData,'RID',tid)
-                # GetInfoData().get_community_id(0, 'tid', str(tid))
-                print(getattr(GetInfoData,'RID'))
+                global RID,TID,CID
+                setattr(GetInfoData,'TID',tid)
         except AssertionError as e:
             self.logger.error('用例失败错误是{}'.format(e))
             TestResult = 'Failed'

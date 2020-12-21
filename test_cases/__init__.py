@@ -4,9 +4,25 @@
 #文件     :
 #IDE      :PyCharm
 
-import random
-from common import setting
-# print(random.randint(0,9))
 
 
-# print(setting.ENVIRONMENT !=3)
+class Solution:
+    def reverse(self, x: int) -> int:
+        if x <0:
+            num=abs(x)
+            res_str=str(num)[::-1]
+            res_int=int('-'+res_str)
+        else:
+            res_str = str(x)[::-1]
+            res_int = int(res_str)
+
+        if (-pow(2,31) < res_int < pow(2,31)-1):
+            return res_int
+        return 0
+if __name__ == '__main__':
+    num = -1234500
+    print(Solution().reverse(num))
+
+
+
+print(2**31)

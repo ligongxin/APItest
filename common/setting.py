@@ -11,3 +11,6 @@
 
 
 ENVIRONMENT=1
+
+#替换的数据
+REPALCE_DATA=['rid','tid','cid']

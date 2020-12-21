@@ -12,6 +12,8 @@ import random
 class GetInfoData:
 
     RID=None
+    TID=None
+    CID=None
 
     def __init__(self,sheet_name='info'):
         self.sheet_name=sheet_name
@@ -81,9 +83,28 @@ def Application_profiles(data):
     return res_data
 
 
+
+def replace_data(one_data,two_data=setting.REPALCE_DATA):
+    '''
+    替换数据，一定要保持GetInfoData里有对应的值
+    :param one_data: 原数据
+    :param two_data:需要替换的键
+    :return:替换后的数据
+    '''
+    for item in two_data:
+        if one_data['param'].find('${%s}'%item)!=-1:
+            one_data['param'] = one_data['param'].replace('${%s}'%item, str(getattr(GetInfoData, item.upper())))
+    return one_data
+
+
 if __name__ == '__main__':
     # print(type(GetInfoData.base_url))
     # print(GetInfoData().BaseUrl(setting.ENVIRONMENT))
-    obj=GetInfoData()
-    obj.get_community_id(0,'cid','111181')
+    # obj=GetInfoData()
+    # obj.get_community_id(0,'cid','111181')
     # print(obj.get_community_id(1))
+
+    one_data={'param':"{'id':1,'tid':'${tid}','cid':${cid}}"}
+
+    res=replace_data(one_data)
+    print(res)
